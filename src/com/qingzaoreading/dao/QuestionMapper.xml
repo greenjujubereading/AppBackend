@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingzaoreading.dao.QuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.qingzaoreading.pojo.po.Question" >
+    <id column="question_id" property="questionId" jdbcType="BIGINT" />
+    <result column="video_id" property="videoId" jdbcType="BIGINT" />
+    <result column="question _content" property="questionContent" jdbcType="VARCHAR" />
+    <result column="option_a" property="optionA" jdbcType="VARCHAR" />
+    <result column="option_b" property="optionB" jdbcType="VARCHAR" />
+    <result column="option_c" property="optionC" jdbcType="VARCHAR" />
+    <result column="option_d" property="optionD" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="answer_analysis" property="answerAnalysis" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    question_id, video_id, "question _content", option_a, option_b, option_c, option_d, 
+    answer, answer_analysis
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qingzaoreading.pojo.po.QuestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from question
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from question
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qingzaoreading.pojo.po.QuestionExample" >
+    delete from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qingzaoreading.pojo.po.Question" >
+    insert into question (question_id, video_id, "question _content", 
+      option_a, option_b, option_c, 
+      option_d, answer, answer_analysis
+      )
+    values (#{questionId,jdbcType=BIGINT}, #{videoId,jdbcType=BIGINT}, #{questionContent,jdbcType=VARCHAR}, 
+      #{optionA,jdbcType=VARCHAR}, #{optionB,jdbcType=VARCHAR}, #{optionC,jdbcType=VARCHAR}, 
+      #{optionD,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{answerAnalysis,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qingzaoreading.pojo.po.Question" >
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="videoId != null" >
+        video_id,
+      </if>
+      <if test="questionContent != null" >
+        "question _content",
+      </if>
+      <if test="optionA != null" >
+        option_a,
+      </if>
+      <if test="optionB != null" >
+        option_b,
+      </if>
+      <if test="optionC != null" >
+        option_c,
+      </if>
+      <if test="optionD != null" >
+        option_d,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+      <if test="answerAnalysis != null" >
+        answer_analysis,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="videoId != null" >
+        #{videoId,jdbcType=BIGINT},
+      </if>
+      <if test="questionContent != null" >
+        #{questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="optionA != null" >
+        #{optionA,jdbcType=VARCHAR},
+      </if>
+      <if test="optionB != null" >
+        #{optionB,jdbcType=VARCHAR},
+      </if>
+      <if test="optionC != null" >
+        #{optionC,jdbcType=VARCHAR},
+      </if>
+      <if test="optionD != null" >
+        #{optionD,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="answerAnalysis != null" >
+        #{answerAnalysis,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qingzaoreading.pojo.po.QuestionExample" resultType="java.lang.Integer" >
+    select count(*) from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update question
+    <set >
+      <if test="record.questionId != null" >
+        question_id = #{record.questionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.videoId != null" >
+        video_id = #{record.videoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.questionContent != null" >
+        "question _content" = #{record.questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionA != null" >
+        option_a = #{record.optionA,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionB != null" >
+        option_b = #{record.optionB,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionC != null" >
+        option_c = #{record.optionC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionD != null" >
+        option_d = #{record.optionD,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer != null" >
+        answer = #{record.answer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answerAnalysis != null" >
+        answer_analysis = #{record.answerAnalysis,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update question
+    set question_id = #{record.questionId,jdbcType=BIGINT},
+      video_id = #{record.videoId,jdbcType=BIGINT},
+      "question _content" = #{record.questionContent,jdbcType=VARCHAR},
+      option_a = #{record.optionA,jdbcType=VARCHAR},
+      option_b = #{record.optionB,jdbcType=VARCHAR},
+      option_c = #{record.optionC,jdbcType=VARCHAR},
+      option_d = #{record.optionD,jdbcType=VARCHAR},
+      answer = #{record.answer,jdbcType=VARCHAR},
+      answer_analysis = #{record.answerAnalysis,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qingzaoreading.pojo.po.Question" >
+    update question
+    <set >
+      <if test="videoId != null" >
+        video_id = #{videoId,jdbcType=BIGINT},
+      </if>
+      <if test="questionContent != null" >
+        "question _content" = #{questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="optionA != null" >
+        option_a = #{optionA,jdbcType=VARCHAR},
+      </if>
+      <if test="optionB != null" >
+        option_b = #{optionB,jdbcType=VARCHAR},
+      </if>
+      <if test="optionC != null" >
+        option_c = #{optionC,jdbcType=VARCHAR},
+      </if>
+      <if test="optionD != null" >
+        option_d = #{optionD,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="answerAnalysis != null" >
+        answer_analysis = #{answerAnalysis,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qingzaoreading.pojo.po.Question" >
+    update question
+    set video_id = #{videoId,jdbcType=BIGINT},
+      "question _content" = #{questionContent,jdbcType=VARCHAR},
+      option_a = #{optionA,jdbcType=VARCHAR},
+      option_b = #{optionB,jdbcType=VARCHAR},
+      option_c = #{optionC,jdbcType=VARCHAR},
+      option_d = #{optionD,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      answer_analysis = #{answerAnalysis,jdbcType=VARCHAR}
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingzaoreading.dao.UserVipLogMapper" >
+  <resultMap id="BaseResultMap" type="com.qingzaoreading.pojo.po.UserVipLog" >
+    <id column="user_vip_log_id" property="userVipLogId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="increased_vip_duration" property="increasedVipDuration" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="operation_type" property="operationType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_vip_log_id, user_id, increased_vip_duration, time, operation_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qingzaoreading.pojo.po.UserVipLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_vip_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_vip_log
+    where user_vip_log_id = #{userVipLogId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_vip_log
+    where user_vip_log_id = #{userVipLogId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qingzaoreading.pojo.po.UserVipLogExample" >
+    delete from user_vip_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qingzaoreading.pojo.po.UserVipLog" >
+    insert into user_vip_log (user_vip_log_id, user_id, increased_vip_duration, 
+      time, operation_type)
+    values (#{userVipLogId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{increasedVipDuration,jdbcType=INTEGER}, 
+      #{time,jdbcType=TIMESTAMP}, #{operationType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qingzaoreading.pojo.po.UserVipLog" >
+    insert into user_vip_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userVipLogId != null" >
+        user_vip_log_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="increasedVipDuration != null" >
+        increased_vip_duration,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="operationType != null" >
+        operation_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userVipLogId != null" >
+        #{userVipLogId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="increasedVipDuration != null" >
+        #{increasedVipDuration,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationType != null" >
+        #{operationType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qingzaoreading.pojo.po.UserVipLogExample" resultType="java.lang.Integer" >
+    select count(*) from user_vip_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_vip_log
+    <set >
+      <if test="record.userVipLogId != null" >
+        user_vip_log_id = #{record.userVipLogId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.increasedVipDuration != null" >
+        increased_vip_duration = #{record.increasedVipDuration,jdbcType=INTEGER},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operationType != null" >
+        operation_type = #{record.operationType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_vip_log
+    set user_vip_log_id = #{record.userVipLogId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      increased_vip_duration = #{record.increasedVipDuration,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      operation_type = #{record.operationType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qingzaoreading.pojo.po.UserVipLog" >
+    update user_vip_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="increasedVipDuration != null" >
+        increased_vip_duration = #{increasedVipDuration,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationType != null" >
+        operation_type = #{operationType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_vip_log_id = #{userVipLogId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qingzaoreading.pojo.po.UserVipLog" >
+    update user_vip_log
+    set user_id = #{userId,jdbcType=BIGINT},
+      increased_vip_duration = #{increasedVipDuration,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      operation_type = #{operationType,jdbcType=VARCHAR}
+    where user_vip_log_id = #{userVipLogId,jdbcType=BIGINT}
+  </update>
+</mapper>

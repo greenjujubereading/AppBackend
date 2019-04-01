@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingzaoreading.dao.LecturerMapper" >
+  <resultMap id="BaseResultMap" type="com.qingzaoreading.pojo.po.Lecturer" >
+    <id column="lecturer_id" property="lecturerId" jdbcType="BIGINT" />
+    <result column="lecturer_name" property="lecturerName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.qingzaoreading.pojo.po.LecturerWithBLOBs" extends="BaseResultMap" >
+    <result column="lecturer_head_portrait_url" property="lecturerHeadPortraitUrl" jdbcType="LONGVARCHAR" />
+    <result column="lecturer_ introduction" property="lecturerIntroduction" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    lecturer_id, lecturer_name
+  </sql>
+  <sql id="Blob_Column_List" >
+    lecturer_head_portrait_url, "lecturer_ introduction"
+  </sql>
+  
+  
+  <!-- Lecturer getlecturerbyid(String lecturer_id) -->
+    <select id="getlecturerbyid" resultType="com.qingzaoreading.pojo.po.Lecturer" parameterType="java.lang.String" >
+    select
+   *
+    from lecturer
+   where lecturer_id=#{lecturer_id};
+  </select>
+  <!-- List<Lecturer> getalllecturer()  -->
+    <select id="getalllecturer" resultType="com.qingzaoreading.pojo.po.Lecturer" >
+    select
+   *
+    from lecturer;
+  </select>
+  
+  
+  
+  
+  
+  
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.qingzaoreading.pojo.po.LecturerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lecturer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qingzaoreading.pojo.po.LecturerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lecturer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lecturer
+    where lecturer_id = #{lecturerId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lecturer
+    where lecturer_id = #{lecturerId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qingzaoreading.pojo.po.LecturerExample" >
+    delete from lecturer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qingzaoreading.pojo.po.LecturerWithBLOBs" >
+    insert into lecturer (lecturer_id, lecturer_name, lecturer_head_portrait_url, 
+      "lecturer_ introduction")
+    values (#{lecturerId,jdbcType=BIGINT}, #{lecturerName,jdbcType=VARCHAR}, #{lecturerHeadPortraitUrl,jdbcType=LONGVARCHAR}, 
+      #{lecturerIntroduction,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qingzaoreading.pojo.po.LecturerWithBLOBs" >
+    insert into lecturer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lecturerId != null" >
+        lecturer_id,
+      </if>
+      <if test="lecturerName != null" >
+        lecturer_name,
+      </if>
+      <if test="lecturerHeadPortraitUrl != null" >
+        lecturer_head_portrait_url,
+      </if>
+      <if test="lecturerIntroduction != null" >
+        "lecturer_ introduction",
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lecturerId != null" >
+        #{lecturerId,jdbcType=BIGINT},
+      </if>
+      <if test="lecturerName != null" >
+        #{lecturerName,jdbcType=VARCHAR},
+      </if>
+      <if test="lecturerHeadPortraitUrl != null" >
+        #{lecturerHeadPortraitUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lecturerIntroduction != null" >
+        #{lecturerIntroduction,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qingzaoreading.pojo.po.LecturerExample" resultType="java.lang.Integer" >
+    select count(*) from lecturer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lecturer
+    <set >
+      <if test="record.lecturerId != null" >
+        lecturer_id = #{record.lecturerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lecturerName != null" >
+        lecturer_name = #{record.lecturerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lecturerHeadPortraitUrl != null" >
+        lecturer_head_portrait_url = #{record.lecturerHeadPortraitUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.lecturerIntroduction != null" >
+        "lecturer_ introduction" = #{record.lecturerIntroduction,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update lecturer
+    set lecturer_id = #{record.lecturerId,jdbcType=BIGINT},
+      lecturer_name = #{record.lecturerName,jdbcType=VARCHAR},
+      lecturer_head_portrait_url = #{record.lecturerHeadPortraitUrl,jdbcType=LONGVARCHAR},
+      "lecturer_ introduction" = #{record.lecturerIntroduction,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lecturer
+    set lecturer_id = #{record.lecturerId,jdbcType=BIGINT},
+      lecturer_name = #{record.lecturerName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qingzaoreading.pojo.po.LecturerWithBLOBs" >
+    update lecturer
+    <set >
+      <if test="lecturerName != null" >
+        lecturer_name = #{lecturerName,jdbcType=VARCHAR},
+      </if>
+      <if test="lecturerHeadPortraitUrl != null" >
+        lecturer_head_portrait_url = #{lecturerHeadPortraitUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lecturerIntroduction != null" >
+        "lecturer_ introduction" = #{lecturerIntroduction,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where lecturer_id = #{lecturerId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qingzaoreading.pojo.po.LecturerWithBLOBs" >
+    update lecturer
+    set lecturer_name = #{lecturerName,jdbcType=VARCHAR},
+      lecturer_head_portrait_url = #{lecturerHeadPortraitUrl,jdbcType=LONGVARCHAR},
+      "lecturer_ introduction" = #{lecturerIntroduction,jdbcType=LONGVARCHAR}
+    where lecturer_id = #{lecturerId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qingzaoreading.pojo.po.Lecturer" >
+    update lecturer
+    set lecturer_name = #{lecturerName,jdbcType=VARCHAR}
+    where lecturer_id = #{lecturerId,jdbcType=BIGINT}
+  </update>
+</mapper>

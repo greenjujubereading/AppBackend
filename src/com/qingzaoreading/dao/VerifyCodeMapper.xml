@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingzaoreading.dao.VerifyCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.qingzaoreading.pojo.po.VerifyCode" >
+    <id column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="verify_code" property="verifyCode" jdbcType="VARCHAR" />
+    <result column="data" property="data" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_phone, verify_code, data
+  </sql>
+  
+  <!-- void addVerifyCode(VerifyCode vc)  -->
+    <insert id="addVerifyCode" parameterType="com.qingzaoreading.pojo.po.VerifyCode" >
+    insert into verify_code (user_phone, verify_code, data )
+    values (#{user_phone}, #{verify_code}, now()
+      )
+  </insert>
+  
+  <!-- VerifyCode getVerifyCodeByphone(String user_phone)  -->
+  <select id="getVerifyCodeByphone" resultType="com.qingzaoreading.pojo.po.VerifyCode" parameterType="java.lang.String" >
+    select 
+  *
+    from verify_code
+    where user_phone = #{user_phone};
+  </select>
+  
+  
+  <!--  void deleteVerifyCode(VerifyCode vc) -->
+    <delete id="deleteVerifyCode" parameterType="com.qingzaoreading.pojo.po.VerifyCode" >
+    delete from verify_code
+    where user_phone=#{user_phone};
+  </delete>
+  
+  
+  
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qingzaoreading.pojo.po.VerifyCodeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from verify_code
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from verify_code
+    where user_phone = #{userPhone,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from verify_code
+    where user_phone = #{userPhone,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qingzaoreading.pojo.po.VerifyCodeExample" >
+    delete from verify_code
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qingzaoreading.pojo.po.VerifyCode" >
+    insert into verify_code (user_phone, verify_code, data
+      )
+    values (#{userPhone,jdbcType=VARCHAR}, #{verifyCode,jdbcType=VARCHAR}, #{data,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qingzaoreading.pojo.po.VerifyCode" >
+    insert into verify_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="verifyCode != null" >
+        verify_code,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyCode != null" >
+        #{verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qingzaoreading.pojo.po.VerifyCodeExample" resultType="java.lang.Integer" >
+    select count(*) from verify_code
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update verify_code
+    <set >
+      <if test="record.userPhone != null" >
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyCode != null" >
+        verify_code = #{record.verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.data != null" >
+        data = #{record.data,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update verify_code
+    set user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      verify_code = #{record.verifyCode,jdbcType=VARCHAR},
+      data = #{record.data,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qingzaoreading.pojo.po.VerifyCode" >
+    update verify_code
+    <set >
+      <if test="verifyCode != null" >
+        verify_code = #{verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_phone = #{userPhone,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qingzaoreading.pojo.po.VerifyCode" >
+    update verify_code
+    set verify_code = #{verifyCode,jdbcType=VARCHAR},
+      data = #{data,jdbcType=TIMESTAMP}
+    where user_phone = #{userPhone,jdbcType=VARCHAR}
+  </update>
+</mapper>

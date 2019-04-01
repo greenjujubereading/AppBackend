@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingzaoreading.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.qingzaoreading.pojo.po.Comment" >
+    <id column="comment_id" property="commentId" jdbcType="BIGINT" />
+    <result column="video_id" property="videoId" jdbcType="BIGINT" />
+    <result column="from_user_id" property="fromUserId" jdbcType="BIGINT" />
+    <result column="to_user_id" property="toUserId" jdbcType="BIGINT" />
+    <result column="topic_type" property="topicType" jdbcType="VARCHAR" />
+      <result column="topic_id" property="topicID" jdbcType="VARCHAR" />
+    <result column="cotent" property="cotent" jdbcType="VARCHAR" />
+    <result column="comment_date" property="commentDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    comment_id, video_id, from_user_id, to_user_id, topic_type, cotent, omment_date
+  </sql>
+  
+  <!--  List<CommentCustom> getcommentbyid(String video_id) -->
+    <select id="getcommentbyid" resultType="com.qingzaoreading.pojo.vo.CommentCustom" parameterType="java.lang.String" >
+    select
+   comment_id, video_id, from_user_id, 
+      to_user_id, topic_type, cotent, 
+      comment_date,user_name,user_grade,user_head_portrait_url
+    from comment,user
+    where user_id=from_user_id and video_id=#{video_id};
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qingzaoreading.pojo.po.CommentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from comment
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qingzaoreading.pojo.po.CommentExample" >
+    delete from comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qingzaoreading.pojo.po.Comment" >
+    insert into comment (comment_id, video_id, from_user_id, 
+      to_user_id, topic_type, cotent, 
+      omment_date)
+    values (#{commentId,jdbcType=BIGINT}, #{videoId,jdbcType=BIGINT}, #{fromUserId,jdbcType=BIGINT}, 
+      #{toUserId,jdbcType=BIGINT}, #{topicType,jdbcType=VARCHAR}, #{cotent,jdbcType=VARCHAR}, 
+      #{ommentDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qingzaoreading.pojo.po.Comment" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="videoId != null" >
+        video_id,
+      </if>
+      <if test="fromUserId != null" >
+        from_user_id,
+      </if>
+      <if test="toUserId != null" >
+        to_user_id,
+      </if>
+      <if test="topicType != null" >
+        topic_type,
+      </if>
+      <if test="cotent != null" >
+        cotent,
+      </if>
+      <if test="ommentDate != null" >
+        omment_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        #{commentId,jdbcType=BIGINT},
+      </if>
+      <if test="videoId != null" >
+        #{videoId,jdbcType=BIGINT},
+      </if>
+      <if test="fromUserId != null" >
+        #{fromUserId,jdbcType=BIGINT},
+      </if>
+      <if test="toUserId != null" >
+        #{toUserId,jdbcType=BIGINT},
+      </if>
+      <if test="topicType != null" >
+        #{topicType,jdbcType=VARCHAR},
+      </if>
+      <if test="cotent != null" >
+        #{cotent,jdbcType=VARCHAR},
+      </if>
+      <if test="ommentDate != null" >
+        #{ommentDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qingzaoreading.pojo.po.CommentExample" resultType="java.lang.Integer" >
+    select count(*) from comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update comment
+    <set >
+      <if test="record.commentId != null" >
+        comment_id = #{record.commentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.videoId != null" >
+        video_id = #{record.videoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.fromUserId != null" >
+        from_user_id = #{record.fromUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.toUserId != null" >
+        to_user_id = #{record.toUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.topicType != null" >
+        topic_type = #{record.topicType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cotent != null" >
+        cotent = #{record.cotent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ommentDate != null" >
+        omment_date = #{record.ommentDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update comment
+    set comment_id = #{record.commentId,jdbcType=BIGINT},
+      video_id = #{record.videoId,jdbcType=BIGINT},
+      from_user_id = #{record.fromUserId,jdbcType=BIGINT},
+      to_user_id = #{record.toUserId,jdbcType=BIGINT},
+      topic_type = #{record.topicType,jdbcType=VARCHAR},
+      cotent = #{record.cotent,jdbcType=VARCHAR},
+      omment_date = #{record.ommentDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qingzaoreading.pojo.po.Comment" >
+    update comment
+    <set >
+      <if test="videoId != null" >
+        video_id = #{videoId,jdbcType=BIGINT},
+      </if>
+      <if test="fromUserId != null" >
+        from_user_id = #{fromUserId,jdbcType=BIGINT},
+      </if>
+      <if test="toUserId != null" >
+        to_user_id = #{toUserId,jdbcType=BIGINT},
+      </if>
+      <if test="topicType != null" >
+        topic_type = #{topicType,jdbcType=VARCHAR},
+      </if>
+      <if test="cotent != null" >
+        cotent = #{cotent,jdbcType=VARCHAR},
+      </if>
+      <if test="ommentDate != null" >
+        omment_date = #{ommentDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qingzaoreading.pojo.po.Comment" >
+    update comment
+    set video_id = #{videoId,jdbcType=BIGINT},
+      from_user_id = #{fromUserId,jdbcType=BIGINT},
+      to_user_id = #{toUserId,jdbcType=BIGINT},
+      topic_type = #{topicType,jdbcType=VARCHAR},
+      cotent = #{cotent,jdbcType=VARCHAR},
+      omment_date = #{ommentDate,jdbcType=TIMESTAMP}
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </update>
+</mapper>
