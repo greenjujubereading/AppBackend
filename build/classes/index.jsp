@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="js/jquery-easyui-1.5/jquery.min.js"></script>
-<script src="js/common.js"></script>
+<script src="js/common-idea.js"></script>
   <script>
 	function getBasePath(){
 	    return '<%=basePath%>';

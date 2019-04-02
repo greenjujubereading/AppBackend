@@ -21,6 +21,8 @@ public class Video {
 
     private Date time;
 
+    private Date publish_time;
+
     private String parental_guidance;
 
     private String video_url;
@@ -134,5 +136,11 @@ public class Video {
 		this.parental_guidance = parental_guidance;
 	}
 
-    
+	public Date getPublish_time() {
+		return publish_time;
+	}
+
+	public void setPublish_time(Date publish_time) {
+		this.publish_time = publish_time;
+	}
 }

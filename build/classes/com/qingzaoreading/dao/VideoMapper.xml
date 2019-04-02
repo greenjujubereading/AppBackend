@@ -12,6 +12,7 @@
     <result column="number_of_readers" property="numberOfReaders" jdbcType="BIGINT" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="parental_guidance" property="parentalGuidance" jdbcType="VARCHAR" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.qingzaoreading.pojo.po.VideoWithBLOBs" extends="BaseResultMap" >
     <result column="video_url" property="videoUrl" jdbcType="LONGVARCHAR" />
@@ -88,28 +89,28 @@
        <select id="getBooklist" resultType="com.qingzaoreading.pojo.vo.BookList" >
     select 
  		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
-    from video;
+    from video where publish_time &lt; now();
   </select>
 
   <!-- List<BookRecommend> getBookrecommend() -->
          <select id="getBookrecommend" resultType="com.qingzaoreading.pojo.vo.BookRecommend" >
     select 
  		video_id,video_cover_url,name
-    from video;
+    from video where publish_time &lt; now();
   </select>
   <!-- List<BookList> getBookListByType(String video_type) -->
          <select id="getBookListByType" resultType="com.qingzaoreading.pojo.vo.BookList"  parameterType="java.lang.String">
     select 
  		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
     from video
-    where video_type=#{video_type};
+    where video_type=#{video_type} AND publish_time &lt; now();
   </select>
   <!-- Video getBookById(String video_id) -->
          <select id="getBookById" resultType="com.qingzaoreading.pojo.po.Video"  parameterType="java.lang.String">
     select 
  		*
     from video
-    where video_id=#{video_id};
+    where video_id=#{video_id} AND publish_time &lt; now();
   </select>
   
   <!-- List<BookList> search(String video_name) -->
@@ -117,7 +118,7 @@
     select 
  		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
     from video
-    where video.`name` LIKE  CONCAT("%",#{video_name},"%");
+    where video.`name` LIKE  CONCAT("%",#{video_name},"%")  AND publish_time &lt; now();
   </select>
   <!-- String getparentguidancebyid(String video_id) -->
     <select id="getparentguidancebyid" resultType="java.lang.String"  parameterType="java.lang.String">
@@ -131,7 +132,7 @@
     select 
  		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
     from video
-   where lecturer_id=#{lecturer_id};
+   where lecturer_id=#{lecturer_id}  AND publish_time &lt; now();
   </select>
   
   <!-- List<LikeBookList> likebooklist(String video_id)  -->
@@ -139,7 +140,7 @@
   select 
  		video_id,video_cover_url,name,short_introduction
     from video
-   where video_type =(SELECT video_type FROM video where video_id=#{video_id}) AND video_id !=#{video_id};
+   where video_type =(SELECT video_type FROM video where video_id=#{video_id}) AND video_id !=#{video_id} AND publish_time &lt; now();
   </select>
   
   

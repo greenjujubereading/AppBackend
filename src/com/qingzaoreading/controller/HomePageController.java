@@ -45,6 +45,7 @@ public class HomePageController {
 	@RequestMapping("/carousel")
 	@ResponseBody
 	public List<Playing> getCarousel() {
+		System.out.println("xixi");
 		List<Playing> list=homePageService.getCarousel();
 		for(int i=0;i<list.size();i++) {
 			list.get(i).setPicture_url(FilePath.getUrl(list.get(i).getPicture_url()));
