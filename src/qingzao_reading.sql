@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySQL
+Source Server         : 本地
 Source Server Version : 50553
 Source Host           : localhost:3306
 Source Database       : qingzao_reading
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-04-01 13:46:39
+Date: 2019-04-02 17:20:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -199,7 +199,7 @@ CREATE TABLE `user_collection` (
 -- ----------------------------
 -- Records of user_collection
 -- ----------------------------
-INSERT INTO `user_collection` VALUES ('4', '1', '1', '2019-03-26 18:15:19', '12');
+INSERT INTO `user_collection` VALUES ('4', '1', '1', '2019-03-26 18:15:19', '55');
 
 -- ----------------------------
 -- Table structure for user_history
@@ -221,7 +221,7 @@ CREATE TABLE `user_history` (
 -- ----------------------------
 -- Records of user_history
 -- ----------------------------
-INSERT INTO `user_history` VALUES ('1', '1', '1', '2019-03-26 16:24:52', '12');
+INSERT INTO `user_history` VALUES ('1', '1', '1', '2019-03-26 16:24:52', '55');
 
 -- ----------------------------
 -- Table structure for user_login_log
@@ -294,6 +294,8 @@ CREATE TABLE `video` (
   `number_of_readers` bigint(20) unsigned NOT NULL COMMENT '阅读人数',
   `time` datetime NOT NULL COMMENT '上架时间',
   `parental_guidance` varchar(255) DEFAULT NULL COMMENT '家长导读',
+  `publish_time` datetime NOT NULL COMMENT '可见时间',
+  `recommend` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '是否推荐',
   PRIMARY KEY (`video_id`),
   KEY `lecturer_video` (`lecturer_id`),
   CONSTRAINT `lecturer_video` FOREIGN KEY (`lecturer_id`) REFERENCES `lecturer` (`lecturer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -302,5 +304,10 @@ CREATE TABLE `video` (
 -- ----------------------------
 -- Records of video
 -- ----------------------------
-INSERT INTO `video` VALUES ('1', 'douyin.mp4', 'szp.jpg', 'douyin.mp4', '清早读书', '短介绍', '介绍', '1', '1', '1', '1000', '2019-04-05 22:06:42', '家长导读');
-INSERT INTO `video` VALUES ('2', 'douyin.mp4', 'szp.jpg', 'douyin.mp4', '清早读书2', '短介绍', '介绍', '1', '1', '2', '2000', '2019-03-20 22:40:22', '家长导读');
+INSERT INTO `video` VALUES ('1', 'douyin.mp4', 'szp.jpg', 'douyin.mp4', '清早读书', '短介绍', '介绍', '1', '0', '1', '1000', '2019-04-05 22:06:42', '家长导读', '2019-03-01 19:40:17', '1');
+INSERT INTO `video` VALUES ('2', 'douyin.mp4', 'szp.jpg', 'douyin.mp4', '清早读书2', '短介绍', '介绍', '1', '0', '2', '2000', '2019-03-20 22:40:22', '家长导读', '2019-04-01 19:40:37', '1');
+INSERT INTO `video` VALUES ('3', 'douyin.mp4', 'szp.jpg', 'douyin.mp4', '清早读书3', '短介绍', '介绍', '1', '0', '3', '2000', '2019-03-20 22:40:22', '家长导读', '2019-03-29 10:36:37', '0');
+INSERT INTO `video` VALUES ('4', 'douyin.mp4', 'szp.jpg', 'douyin.mp4', '清早读书4', '短介绍', '介绍', '1', '1', '4', '2000', '2019-03-20 22:40:22', '家长导读', '2019-04-03 19:40:37', '1');
+INSERT INTO `video` VALUES ('5', 'douyin.mp4', 'szp.jpg', 'douyin.mp4', '清早读书5', '短介绍', '介绍', '1', '1', '4', '2000', '2019-03-20 22:40:22', '家长导读', '2019-04-01 09:40:37', '1');
+INSERT INTO `video` VALUES ('6', 'douyin.mp4', 'szp.jpg', 'douyin.mp4', '清早读书6', '短介绍', '介绍', '1', '1', '4', '2000', '2019-03-20 22:40:22', '家长导读', '2019-04-01 19:40:37', '1');
+INSERT INTO `video` VALUES ('7', 'douyin.mp4', 'szp.jpg', 'douyin.mp4', '清早读书7', '短介绍', '介绍', '1', '1', '4', '2000', '2019-03-20 22:40:22', '家长导读', '2019-04-01 19:40:37', '1');

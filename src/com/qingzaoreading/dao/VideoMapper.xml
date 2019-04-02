@@ -1,204 +1,216 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qingzaoreading.dao.VideoMapper" >
-  <resultMap id="BaseResultMap" type="com.qingzaoreading.pojo.po.Video" >
-    <id column="video_id" property="videoId" jdbcType="BIGINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="short_introduction" property="shortIntroduction" jdbcType="VARCHAR" />
-    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
-    <result column="lecturer_id" property="lecturerId" jdbcType="BIGINT" />
-    <result column="video_type" property="videoType" jdbcType="VARCHAR" />
-    <result column="video_year" property="videoYear" jdbcType="VARCHAR" />
-    <result column="number_of_readers" property="numberOfReaders" jdbcType="BIGINT" />
-    <result column="time" property="time" jdbcType="TIMESTAMP" />
-    <result column="parental_guidance" property="parentalGuidance" jdbcType="VARCHAR" />
-    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.qingzaoreading.pojo.po.VideoWithBLOBs" extends="BaseResultMap" >
-    <result column="video_url" property="videoUrl" jdbcType="LONGVARCHAR" />
-    <result column="video_cover_url" property="videoCoverUrl" jdbcType="LONGVARCHAR" />
-    <result column="sound_url" property="soundUrl" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.qingzaoreading.dao.VideoMapper">
+    <resultMap id="BaseResultMap" type="com.qingzaoreading.pojo.po.Video">
+        <id column="video_id" property="videoId" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="short_introduction" property="shortIntroduction" jdbcType="VARCHAR"/>
+        <result column="introduction" property="introduction" jdbcType="VARCHAR"/>
+        <result column="lecturer_id" property="lecturerId" jdbcType="BIGINT"/>
+        <result column="video_type" property="videoType" jdbcType="VARCHAR"/>
+        <result column="video_year" property="videoYear" jdbcType="VARCHAR"/>
+        <result column="number_of_readers" property="numberOfReaders" jdbcType="BIGINT"/>
+        <result column="time" property="time" jdbcType="TIMESTAMP"/>
+        <result column="parental_guidance" property="parentalGuidance" jdbcType="VARCHAR"/>
+        <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.qingzaoreading.pojo.po.VideoWithBLOBs" extends="BaseResultMap">
+        <result column="video_url" property="videoUrl" jdbcType="LONGVARCHAR"/>
+        <result column="video_cover_url" property="videoCoverUrl" jdbcType="LONGVARCHAR"/>
+        <result column="sound_url" property="soundUrl" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     video_id, name, short_introduction, introduction, lecturer_id, video_type, video_year, 
     number_of_readers, time, parental_guidance
   </sql>
-  <sql id="Blob_Column_List" >
+    <sql id="Blob_Column_List">
     video_url, video_cover_url, sound_url
   </sql>
-  
-  <!-- List<BookList> getBooklist() -->
-       <select id="getBooklist" resultType="com.qingzaoreading.pojo.vo.BookList" >
+
+    <!-- List<BookList> getBooklist() -->
+    <select id="getBooklist" resultType="com.qingzaoreading.pojo.vo.BookList">
     select 
  		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
-    from video where publish_time &lt; now();
+    from video where publish_time &lt; now() order by publish_time;
   </select>
 
-  <!-- List<BookRecommend> getBookrecommend() -->
-         <select id="getBookrecommend" resultType="com.qingzaoreading.pojo.vo.BookRecommend" >
+    <!-- List<BookRecommend> getBookrecommend() Home reommend book-->
+    <select id="getBookrecommend" resultType="com.qingzaoreading.pojo.vo.BookRecommend">
     select 
  		video_id,video_cover_url,name
-    from video where publish_time &lt; now();
+    from video where publish_time &lt; now() and recommend=1 order by publish_time desc limit 4;
   </select>
-  <!-- List<BookList> getBookListByType(String video_type) -->
-         <select id="getBookListByType" resultType="com.qingzaoreading.pojo.vo.BookList"  parameterType="java.lang.String">
+
+    <!-- List<BookRecommend> getRecommendBooklist() Home reommend book more-->
+    <select id="getRecommendBooklist" resultType="com.qingzaoreading.pojo.vo.BookList">
+    select
+ 		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
+    from video where publish_time &lt; now() and recommend=1 order by publish_time;
+  </select>
+
+    <!-- List<BookRecommend> getRecentBooklist() Home recent book more-->
+    <select id="getRecentBooklist" resultType="com.qingzaoreading.pojo.vo.BookList">
+    select
+ 		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
+    from video where publish_time &lt; now() order by publish_time;
+  </select>
+
+    <!-- List<BookList> getBookListByType(String video_type) -->
+    <select id="getBookListByType" resultType="com.qingzaoreading.pojo.vo.BookList" parameterType="java.lang.String">
     select 
  		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
     from video
     where video_type=#{video_type} AND publish_time &lt; now();
   </select>
-  <!-- Video getBookById(String video_id) -->
-         <select id="getBookById" resultType="com.qingzaoreading.pojo.po.Video"  parameterType="java.lang.String">
+    <!-- Video getBookById(String video_id) -->
+    <select id="getBookById" resultType="com.qingzaoreading.pojo.po.Video" parameterType="java.lang.String">
     select 
  		*
     from video
     where video_id=#{video_id} AND publish_time &lt; now();
   </select>
-  
-  <!-- List<BookList> search(String video_name) -->
-         <select id="search" resultType="com.qingzaoreading.pojo.vo.BookList"  parameterType="java.lang.String">
+
+    <!-- List<BookList> search(String video_name) -->
+    <select id="search" resultType="com.qingzaoreading.pojo.vo.BookList" parameterType="java.lang.String">
     select 
  		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
     from video
     where video.`name` LIKE  CONCAT("%",#{video_name},"%")  AND publish_time &lt; now();
   </select>
-  <!-- String getparentguidancebyid(String video_id) -->
-    <select id="getparentguidancebyid" resultType="java.lang.String"  parameterType="java.lang.String">
+    <!-- String getparentguidancebyid(String video_id) -->
+    <select id="getparentguidancebyid" resultType="java.lang.String" parameterType="java.lang.String">
     select 
  		parental_guidance
     from video
    where video_id=#{video_id};
   </select>
-  <!-- List<BookList> getbooklistbyid(String lecturer_id) -->
-      <select id="getbooklistbyid" resultType="com.qingzaoreading.pojo.vo.BookList"  parameterType="java.lang.String">
+    <!-- List<BookList> getbooklistbyid(String lecturer_id) -->
+    <select id="getbooklistbyid" resultType="com.qingzaoreading.pojo.vo.BookList" parameterType="java.lang.String">
     select 
  		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
     from video
    where lecturer_id=#{lecturer_id}  AND publish_time &lt; now();
   </select>
-  
-  <!-- List<LikeBookList> likebooklist(String video_id)  -->
-      <select id="likebooklist" resultType="com.qingzaoreading.pojo.vo.LikeBookList"  parameterType="java.lang.String">
+
+    <!-- List<LikeBookList> likebooklist(String video_id)  -->
+    <select id="likebooklist" resultType="com.qingzaoreading.pojo.vo.LikeBookList" parameterType="java.lang.String">
   select 
  		video_id,video_cover_url,name,short_introduction
     from video
    where video_type =(SELECT video_type FROM video where video_id=#{video_id}) AND video_id !=#{video_id} AND publish_time &lt; now();
   </select>
-  
-  
-  
-  
-  
-  
-  
-  
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.qingzaoreading.pojo.po.VideoExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from video
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qingzaoreading.pojo.po.VideoExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from video
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from video
-    where video_id = #{videoId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+
+
+    <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs"
+            parameterType="com.qingzaoreading.pojo.po.VideoExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from video
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qingzaoreading.pojo.po.VideoExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from video
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from video
+        where video_id = #{videoId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from video
     where video_id = #{videoId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.qingzaoreading.pojo.po.VideoExample" >
-    delete from video
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.qingzaoreading.pojo.po.VideoWithBLOBs" >
+    <delete id="deleteByExample" parameterType="com.qingzaoreading.pojo.po.VideoExample">
+        delete from video
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.qingzaoreading.pojo.po.VideoWithBLOBs">
     insert into video (video_id, name, short_introduction, 
       introduction, lecturer_id, video_type, 
       video_year, number_of_readers, time, 
@@ -210,222 +222,222 @@
       #{parentalGuidance,jdbcType=VARCHAR}, #{videoUrl,jdbcType=LONGVARCHAR}, #{videoCoverUrl,jdbcType=LONGVARCHAR}, 
       #{soundUrl,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.qingzaoreading.pojo.po.VideoWithBLOBs" >
-    insert into video
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="videoId != null" >
-        video_id,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="shortIntroduction != null" >
-        short_introduction,
-      </if>
-      <if test="introduction != null" >
-        introduction,
-      </if>
-      <if test="lecturerId != null" >
-        lecturer_id,
-      </if>
-      <if test="videoType != null" >
-        video_type,
-      </if>
-      <if test="videoYear != null" >
-        video_year,
-      </if>
-      <if test="numberOfReaders != null" >
-        number_of_readers,
-      </if>
-      <if test="time != null" >
-        time,
-      </if>
-      <if test="parentalGuidance != null" >
-        parental_guidance,
-      </if>
-      <if test="videoUrl != null" >
-        video_url,
-      </if>
-      <if test="videoCoverUrl != null" >
-        video_cover_url,
-      </if>
-      <if test="soundUrl != null" >
-        sound_url,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="videoId != null" >
-        #{videoId,jdbcType=BIGINT},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="shortIntroduction != null" >
-        #{shortIntroduction,jdbcType=VARCHAR},
-      </if>
-      <if test="introduction != null" >
-        #{introduction,jdbcType=VARCHAR},
-      </if>
-      <if test="lecturerId != null" >
-        #{lecturerId,jdbcType=BIGINT},
-      </if>
-      <if test="videoType != null" >
-        #{videoType,jdbcType=VARCHAR},
-      </if>
-      <if test="videoYear != null" >
-        #{videoYear,jdbcType=VARCHAR},
-      </if>
-      <if test="numberOfReaders != null" >
-        #{numberOfReaders,jdbcType=BIGINT},
-      </if>
-      <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="parentalGuidance != null" >
-        #{parentalGuidance,jdbcType=VARCHAR},
-      </if>
-      <if test="videoUrl != null" >
-        #{videoUrl,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="videoCoverUrl != null" >
-        #{videoCoverUrl,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="soundUrl != null" >
-        #{soundUrl,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.qingzaoreading.pojo.po.VideoExample" resultType="java.lang.Integer" >
-    select count(*) from video
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update video
-    <set >
-      <if test="record.videoId != null" >
-        video_id = #{record.videoId,jdbcType=BIGINT},
-      </if>
-      <if test="record.name != null" >
+    <insert id="insertSelective" parameterType="com.qingzaoreading.pojo.po.VideoWithBLOBs">
+        insert into video
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="videoId != null">
+                video_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="shortIntroduction != null">
+                short_introduction,
+            </if>
+            <if test="introduction != null">
+                introduction,
+            </if>
+            <if test="lecturerId != null">
+                lecturer_id,
+            </if>
+            <if test="videoType != null">
+                video_type,
+            </if>
+            <if test="videoYear != null">
+                video_year,
+            </if>
+            <if test="numberOfReaders != null">
+                number_of_readers,
+            </if>
+            <if test="time != null">
+                time,
+            </if>
+            <if test="parentalGuidance != null">
+                parental_guidance,
+            </if>
+            <if test="videoUrl != null">
+                video_url,
+            </if>
+            <if test="videoCoverUrl != null">
+                video_cover_url,
+            </if>
+            <if test="soundUrl != null">
+                sound_url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="videoId != null">
+                #{videoId,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="shortIntroduction != null">
+                #{shortIntroduction,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="lecturerId != null">
+                #{lecturerId,jdbcType=BIGINT},
+            </if>
+            <if test="videoType != null">
+                #{videoType,jdbcType=VARCHAR},
+            </if>
+            <if test="videoYear != null">
+                #{videoYear,jdbcType=VARCHAR},
+            </if>
+            <if test="numberOfReaders != null">
+                #{numberOfReaders,jdbcType=BIGINT},
+            </if>
+            <if test="time != null">
+                #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="parentalGuidance != null">
+                #{parentalGuidance,jdbcType=VARCHAR},
+            </if>
+            <if test="videoUrl != null">
+                #{videoUrl,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="videoCoverUrl != null">
+                #{videoCoverUrl,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="soundUrl != null">
+                #{soundUrl,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.qingzaoreading.pojo.po.VideoExample" resultType="java.lang.Integer">
+        select count(*) from video
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update video
+        <set>
+            <if test="record.videoId != null">
+                video_id = #{record.videoId,jdbcType=BIGINT},
+            </if>
+            <if test="record.name != null">
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.shortIntroduction != null">
+                short_introduction = #{record.shortIntroduction,jdbcType=VARCHAR},
+            </if>
+            <if test="record.introduction != null">
+                introduction = #{record.introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lecturerId != null">
+                lecturer_id = #{record.lecturerId,jdbcType=BIGINT},
+            </if>
+            <if test="record.videoType != null">
+                video_type = #{record.videoType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.videoYear != null">
+                video_year = #{record.videoYear,jdbcType=VARCHAR},
+            </if>
+            <if test="record.numberOfReaders != null">
+                number_of_readers = #{record.numberOfReaders,jdbcType=BIGINT},
+            </if>
+            <if test="record.time != null">
+                time = #{record.time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.parentalGuidance != null">
+                parental_guidance = #{record.parentalGuidance,jdbcType=VARCHAR},
+            </if>
+            <if test="record.videoUrl != null">
+                video_url = #{record.videoUrl,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="record.videoCoverUrl != null">
+                video_cover_url = #{record.videoCoverUrl,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="record.soundUrl != null">
+                sound_url = #{record.soundUrl,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExampleWithBLOBs" parameterType="map">
+        update video
+        set video_id = #{record.videoId,jdbcType=BIGINT},
         name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.shortIntroduction != null" >
         short_introduction = #{record.shortIntroduction,jdbcType=VARCHAR},
-      </if>
-      <if test="record.introduction != null" >
         introduction = #{record.introduction,jdbcType=VARCHAR},
-      </if>
-      <if test="record.lecturerId != null" >
         lecturer_id = #{record.lecturerId,jdbcType=BIGINT},
-      </if>
-      <if test="record.videoType != null" >
         video_type = #{record.videoType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.videoYear != null" >
         video_year = #{record.videoYear,jdbcType=VARCHAR},
-      </if>
-      <if test="record.numberOfReaders != null" >
         number_of_readers = #{record.numberOfReaders,jdbcType=BIGINT},
-      </if>
-      <if test="record.time != null" >
         time = #{record.time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.parentalGuidance != null" >
         parental_guidance = #{record.parentalGuidance,jdbcType=VARCHAR},
-      </if>
-      <if test="record.videoUrl != null" >
         video_url = #{record.videoUrl,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="record.videoCoverUrl != null" >
         video_cover_url = #{record.videoCoverUrl,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="record.soundUrl != null" >
-        sound_url = #{record.soundUrl,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update video
-    set video_id = #{record.videoId,jdbcType=BIGINT},
-      name = #{record.name,jdbcType=VARCHAR},
-      short_introduction = #{record.shortIntroduction,jdbcType=VARCHAR},
-      introduction = #{record.introduction,jdbcType=VARCHAR},
-      lecturer_id = #{record.lecturerId,jdbcType=BIGINT},
-      video_type = #{record.videoType,jdbcType=VARCHAR},
-      video_year = #{record.videoYear,jdbcType=VARCHAR},
-      number_of_readers = #{record.numberOfReaders,jdbcType=BIGINT},
-      time = #{record.time,jdbcType=TIMESTAMP},
-      parental_guidance = #{record.parentalGuidance,jdbcType=VARCHAR},
-      video_url = #{record.videoUrl,jdbcType=LONGVARCHAR},
-      video_cover_url = #{record.videoCoverUrl,jdbcType=LONGVARCHAR},
-      sound_url = #{record.soundUrl,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update video
-    set video_id = #{record.videoId,jdbcType=BIGINT},
-      name = #{record.name,jdbcType=VARCHAR},
-      short_introduction = #{record.shortIntroduction,jdbcType=VARCHAR},
-      introduction = #{record.introduction,jdbcType=VARCHAR},
-      lecturer_id = #{record.lecturerId,jdbcType=BIGINT},
-      video_type = #{record.videoType,jdbcType=VARCHAR},
-      video_year = #{record.videoYear,jdbcType=VARCHAR},
-      number_of_readers = #{record.numberOfReaders,jdbcType=BIGINT},
-      time = #{record.time,jdbcType=TIMESTAMP},
-      parental_guidance = #{record.parentalGuidance,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qingzaoreading.pojo.po.VideoWithBLOBs" >
-    update video
-    <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="shortIntroduction != null" >
-        short_introduction = #{shortIntroduction,jdbcType=VARCHAR},
-      </if>
-      <if test="introduction != null" >
-        introduction = #{introduction,jdbcType=VARCHAR},
-      </if>
-      <if test="lecturerId != null" >
-        lecturer_id = #{lecturerId,jdbcType=BIGINT},
-      </if>
-      <if test="videoType != null" >
-        video_type = #{videoType,jdbcType=VARCHAR},
-      </if>
-      <if test="videoYear != null" >
-        video_year = #{videoYear,jdbcType=VARCHAR},
-      </if>
-      <if test="numberOfReaders != null" >
-        number_of_readers = #{numberOfReaders,jdbcType=BIGINT},
-      </if>
-      <if test="time != null" >
-        time = #{time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="parentalGuidance != null" >
-        parental_guidance = #{parentalGuidance,jdbcType=VARCHAR},
-      </if>
-      <if test="videoUrl != null" >
-        video_url = #{videoUrl,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="videoCoverUrl != null" >
-        video_cover_url = #{videoCoverUrl,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="soundUrl != null" >
-        sound_url = #{soundUrl,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where video_id = #{videoId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qingzaoreading.pojo.po.VideoWithBLOBs" >
+        sound_url = #{record.soundUrl,jdbcType=LONGVARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update video
+        set video_id = #{record.videoId,jdbcType=BIGINT},
+        name = #{record.name,jdbcType=VARCHAR},
+        short_introduction = #{record.shortIntroduction,jdbcType=VARCHAR},
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+        lecturer_id = #{record.lecturerId,jdbcType=BIGINT},
+        video_type = #{record.videoType,jdbcType=VARCHAR},
+        video_year = #{record.videoYear,jdbcType=VARCHAR},
+        number_of_readers = #{record.numberOfReaders,jdbcType=BIGINT},
+        time = #{record.time,jdbcType=TIMESTAMP},
+        parental_guidance = #{record.parentalGuidance,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.qingzaoreading.pojo.po.VideoWithBLOBs">
+        update video
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="shortIntroduction != null">
+                short_introduction = #{shortIntroduction,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="lecturerId != null">
+                lecturer_id = #{lecturerId,jdbcType=BIGINT},
+            </if>
+            <if test="videoType != null">
+                video_type = #{videoType,jdbcType=VARCHAR},
+            </if>
+            <if test="videoYear != null">
+                video_year = #{videoYear,jdbcType=VARCHAR},
+            </if>
+            <if test="numberOfReaders != null">
+                number_of_readers = #{numberOfReaders,jdbcType=BIGINT},
+            </if>
+            <if test="time != null">
+                time = #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="parentalGuidance != null">
+                parental_guidance = #{parentalGuidance,jdbcType=VARCHAR},
+            </if>
+            <if test="videoUrl != null">
+                video_url = #{videoUrl,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="videoCoverUrl != null">
+                video_cover_url = #{videoCoverUrl,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="soundUrl != null">
+                sound_url = #{soundUrl,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where video_id = #{videoId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qingzaoreading.pojo.po.VideoWithBLOBs">
     update video
     set name = #{name,jdbcType=VARCHAR},
       short_introduction = #{shortIntroduction,jdbcType=VARCHAR},
@@ -441,7 +453,7 @@
       sound_url = #{soundUrl,jdbcType=LONGVARCHAR}
     where video_id = #{videoId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.qingzaoreading.pojo.po.Video" >
+    <update id="updateByPrimaryKey" parameterType="com.qingzaoreading.pojo.po.Video">
     update video
     set name = #{name,jdbcType=VARCHAR},
       short_introduction = #{shortIntroduction,jdbcType=VARCHAR},

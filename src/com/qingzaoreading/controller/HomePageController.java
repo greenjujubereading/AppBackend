@@ -71,7 +71,7 @@ public class HomePageController {
 	}
 	
 	/**
-	 * 返回首页的图书推荐列表
+	 * 返回首页的图书推荐列表 只返回4个
 	 * @return  
 	 */
 	@RequestMapping("/bookrecommend")
@@ -85,7 +85,38 @@ public class HomePageController {
 		return list;
 		 
 	}
-	
+
+	/**
+	 * 返回首页更多的图书推荐列表 默认返回全部推荐的书籍
+	 * @return
+	 */
+	@RequestMapping("/bookrecommendmore")
+	@CrossOrigin
+	@ResponseBody
+	public List<BookList> getMoreBookRecommend() {
+		List<BookList> list= homePageService.getRecommendBooklist();
+		for(int i=0;i<list.size();i++) {
+			list.get(i).setVideo_cover_url(FilePath.getUrl(list.get(i).getVideo_cover_url()));
+		}
+		return list;
+
+	}
+
+	/**
+	 * 返回首页更多的最新图书 默认返回全部推荐的书籍
+	 * @return
+	 */
+	@RequestMapping("/bookrecentmore")
+	@CrossOrigin
+	@ResponseBody
+	public List<BookList> getMoreBookRecent() {
+		List<BookList> list= homePageService.getRecentBooklist();
+		for(int i=0;i<list.size();i++) {
+			list.get(i).setVideo_cover_url(FilePath.getUrl(list.get(i).getVideo_cover_url()));
+		}
+		return list;
+
+	}
 	
 	
 	/**

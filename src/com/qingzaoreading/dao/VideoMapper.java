@@ -47,4 +47,8 @@ public interface VideoMapper {
     int updateByPrimaryKeyWithBLOBs(VideoWithBLOBs record);
 
     int updateByPrimaryKey(Video record);
+
+    List<BookList> getRecommendBooklist();
+
+    List<BookList> getRecentBooklist();
 }

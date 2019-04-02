@@ -213,5 +213,18 @@ public class HomePageServiceImpl implements HomePageService {
 		return videoMapper.likebooklist(video_id);
 	}
 
-	
+
+
+	@Override
+	public List<BookList> getRecommendBooklist() {
+		// TODO Auto-generated method stub
+		return videoMapper.getRecommendBooklist();
+	}
+
+
+	@Override
+	public List<BookList> getRecentBooklist() {
+		// TODO Auto-generated method stub
+		return videoMapper.getRecentBooklist();
+	}
 }

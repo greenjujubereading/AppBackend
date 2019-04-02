@@ -14,33 +14,49 @@ import com.qingzaoreading.pojo.vo.CommentCustom;
 import com.qingzaoreading.pojo.vo.LikeBookList;
 
 public interface HomePageService {
-	List<Playing> getCarousel();
-	List<BookList> getBooklist();
-	List<BookRecommend> getBookrecommend();
-	 List<BookList> getBookListByType(String video_type);
-	 Video getBookById(String video_id);
-	 List<BookList> search(String video_name);
-	 List<CommentCustom> getcommentbyid(String video_id);
-	 String  getparentguidancebyid(String video_id);
-	 Lecturer  getlecturerbyid(String lecturer_id);
-	 List<BookList>  getbooklistbyid(String lecturer_id);
-	 List<Lecturer>  getalllecturer();
-	 UserHistory getUserHistoryByvideoiduserid(UserHistory userhistory);
-	 void  addUserHistory(UserHistory userhistory);
-	 void updataUserHistory(UserHistory userhistory);
-	 
-	 void  collecte(UserCollection uc);
-	 
-	 UserCollection getUserCollectionByid(UserCollection uc);
-	 
-	 List<UserCollection>  getcollection(String user_id);
-	 
-	 List<UserHistory>  gethistory(String user_id);
-	
-	 UserCollection getUserCollectionByvideoiduserid(UserCollection usercollection);
-	 
-	 void updataUserCollection(UserCollection usercollection);
-	 
-	 List<LikeBookList>  likebooklist(String video_id);
-	  
+    List<Playing> getCarousel();
+
+    List<BookList> getBooklist();
+
+    List<BookRecommend> getBookrecommend();
+
+    List<BookList> getBookListByType(String video_type);
+
+    Video getBookById(String video_id);
+
+    List<BookList> search(String video_name);
+
+    List<CommentCustom> getcommentbyid(String video_id);
+
+    String getparentguidancebyid(String video_id);
+
+    Lecturer getlecturerbyid(String lecturer_id);
+
+    List<BookList> getbooklistbyid(String lecturer_id);
+
+    List<Lecturer> getalllecturer();
+
+    UserHistory getUserHistoryByvideoiduserid(UserHistory userhistory);
+
+    void addUserHistory(UserHistory userhistory);
+
+    void updataUserHistory(UserHistory userhistory);
+
+    void collecte(UserCollection uc);
+
+    UserCollection getUserCollectionByid(UserCollection uc);
+
+    List<UserCollection> getcollection(String user_id);
+
+    List<UserHistory> gethistory(String user_id);
+
+    UserCollection getUserCollectionByvideoiduserid(UserCollection usercollection);
+
+    void updataUserCollection(UserCollection usercollection);
+
+    List<LikeBookList> likebooklist(String video_id);
+
+    List<BookList> getRecommendBooklist();
+
+    List<BookList> getRecentBooklist();
 }
