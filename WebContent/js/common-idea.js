@@ -188,10 +188,7 @@ $(function () {
             dataType: "json",
             data: data,
             success: function (data) {
-
                 console.log(data);
-
-
             }
         });
     })

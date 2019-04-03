@@ -119,7 +119,7 @@
    <update id="changeUserTypeToTrue" parameterType="com.qingzaoreading.pojo.po.User" >
     update user
     set
-      user_type = ''1"
+      user_type = "1"
      where user_id=#{user_id};
   </update>
   

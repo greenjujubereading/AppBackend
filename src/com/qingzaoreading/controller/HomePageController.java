@@ -185,7 +185,7 @@ public class HomePageController {
 	 * 参数video_name
 	 * @return  
 	 */
-	@RequestMapping("/search")
+	@RequestMapping(value = {"/search"}, method={RequestMethod.POST, RequestMethod.GET})
 	@CrossOrigin
 	@ResponseBody
 	public List<BookList> search(String video_name) {

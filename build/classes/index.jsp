@@ -20,7 +20,7 @@
 <body>
 <form>
     <div>
-        手机号: <input name="userPhone" value="13167351123">
+        手机号: <input name="userPhone" value="13251359103">
     </div>
     <div>
         验证码: <input name="verifyCode">
@@ -65,7 +65,7 @@
 <div style="border:2px black solid">
     <h1>手机号密码登陆</h1>
     <div>
-        手机号: <input name="user_phone2" value="13167351123">
+        手机号: <input name="user_phone2" value="13251359103">
     </div>
     <div>
         密码: <input name="user_password2">
