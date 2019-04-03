@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-04-02 17:20:39
+Date: 2019-04-03 19:11:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -159,7 +159,7 @@ CREATE TABLE `user` (
   `user_password` varchar(50) DEFAULT NULL,
   `user_grade` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
@@ -178,6 +178,9 @@ INSERT INTO `user` VALUES ('11', '100009', '用户10', null, null, '', 'szp.jpg'
 INSERT INTO `user` VALUES ('12', '100010', '用户11', null, null, '13167351132', 'szp.jpg', '0', null, null, '0000000000', '00000000.00', null, '1', '4QrcOUm6Wau+VuBX8g+IPg==', null);
 INSERT INTO `user` VALUES ('13', '100011', '用户12', null, null, '555555555', 'szp.jpg', '0', null, null, '0000000000', '00000000.00', null, '1', '4QrcOUm6Wau+VuBX8g+IPg==', null);
 INSERT INTO `user` VALUES ('14', '100012', '用户13', null, null, '12312312312', 'szp.jpg', '0', null, null, '0000000000', '00000000.00', null, '1', 'ICy5YqxZB1uWSwcVLSNLcA==', null);
+INSERT INTO `user` VALUES ('15', '100013', '用户14', null, null, '15850785726', 'szp.jpg', '0', null, null, '0000000000', '00000000.00', null, '1', '4QrcOUm6Wau+VuBX8g+IPg==', null);
+INSERT INTO `user` VALUES ('19', '100015', '用户16', null, null, '13251359103', 'szp.jpg', '0', null, null, '0000000000', '00000000.00', null, '1', 'e10adc3949ba59abbe56e057f20f883e', null);
+INSERT INTO `user` VALUES ('20', '100015', '用户16', null, null, '15600227095', 'szp.jpg', '0', null, null, '0000000000', '00000000.00', null, '1', 'e10adc3949ba59abbe56e057f20f883e', null);
 
 -- ----------------------------
 -- Table structure for user_collection
@@ -199,7 +202,7 @@ CREATE TABLE `user_collection` (
 -- ----------------------------
 -- Records of user_collection
 -- ----------------------------
-INSERT INTO `user_collection` VALUES ('4', '1', '1', '2019-03-26 18:15:19', '55');
+INSERT INTO `user_collection` VALUES ('4', '1', '1', '2019-03-26 18:15:19', '110');
 
 -- ----------------------------
 -- Table structure for user_history
@@ -216,12 +219,13 @@ CREATE TABLE `user_history` (
   KEY `video_id` (`video_id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `video_id` FOREIGN KEY (`video_id`) REFERENCES `video` (`video_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_history
 -- ----------------------------
-INSERT INTO `user_history` VALUES ('1', '1', '1', '2019-03-26 16:24:52', '55');
+INSERT INTO `user_history` VALUES ('1', '1', '1', '2019-03-26 16:24:52', '110');
+INSERT INTO `user_history` VALUES ('2', '1', '5', '2019-04-02 21:44:57', '188');
 
 -- ----------------------------
 -- Table structure for user_login_log
@@ -275,6 +279,8 @@ CREATE TABLE `verify_code` (
 -- ----------------------------
 -- Records of verify_code
 -- ----------------------------
+INSERT INTO `verify_code` VALUES ('13167351123', '981385', '2019-04-03 08:24:55');
+INSERT INTO `verify_code` VALUES ('13251359103', '174417', '2019-04-03 18:11:12');
 
 -- ----------------------------
 -- Table structure for video
