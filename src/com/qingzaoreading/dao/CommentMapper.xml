@@ -76,8 +76,8 @@
   <!--  List<CommentCustom> getcommentbyid(String video_id) -->
     <select id="getcommentbyid" resultType="com.qingzaoreading.pojo.vo.CommentCustom" parameterType="java.lang.String" >
     select
-   comment_id, video_id, from_user_id, 
-      to_user_id, topic_type, cotent, 
+   comment_id, video_id, from_user_id,
+      to_user_id, topic_type, cotent,
       comment_date,user_name,user_grade,user_head_portrait_url
     from comment,user
     where user_id=from_user_id and video_id=#{video_id};

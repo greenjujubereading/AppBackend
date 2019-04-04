@@ -175,7 +175,7 @@ public class HomePageController {
 		Video video=homePageService.getBookById(video_id);
 	   video.setSound_url(FilePath.getUrl(video.getSound_url()));
 	   video.setVideo_cover_url(FilePath.getUrl(video.getVideo_cover_url()));
-	   video.setVideo_url(FilePath.getUrl(video.getVideo_url()));
+//	   video.setVideo_url(FilePath.getUrl(video.getVideo_url()));
 		return video;
 	}
 	
@@ -203,12 +203,16 @@ public class HomePageController {
 	 * 根据video_id得到对应的评论
 	 * 
 	 */
-	@RequestMapping("/getcommentbyid")
+	@RequestMapping(value = {"/getcommentbyid"}, method={RequestMethod.POST, RequestMethod.GET})
 	@CrossOrigin
 	@ResponseBody
 	public List<CommentCustom> getcommentbyid(String video_id) {
-		
-		return homePageService.getcommentbyid(video_id);
+		List<CommentCustom> list = homePageService.getcommentbyid(video_id);
+//		System.out.println(video_id);
+		for(int i=0;i<list.size();i++) {
+			list.get(i).setUser_head_portrait_url(FilePath.getUrl(list.get(i).getUser_head_portrait_url()));
+		}
+		return list;
 	}
 	
 	/**

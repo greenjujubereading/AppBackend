@@ -171,7 +171,14 @@ public class UserRegisterLoginController {
 		}
 		else //假用户
 		{
-		
+			//给假用户设置密码
+			System.out.println("给假用户设置密码"+user_password);
+			System.out.println("用户名为"+user.getUser_name());
+			user.setUser_password(Md5.GetMD5Code(user_password));
+			userRegisterLoginService.setPassword(user);
+
+			//记入邀请人id
+
 			//假用户，修改用户类型为1
 			userRegisterLoginService.changeUserTypeToTrue(user);
 			map.put("result", true);

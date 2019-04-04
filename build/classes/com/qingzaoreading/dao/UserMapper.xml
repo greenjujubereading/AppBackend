@@ -100,8 +100,8 @@
      <select id="getUserTotal" resultType="_int"   >
     select
    count(1)
-    from user
-    where user.user_type="1";
+    from user;
+--     where user.user_type="1";
   </select>
   
   
@@ -122,6 +122,9 @@
       user_type = "1"
      where user_id=#{user_id};
   </update>
+
+
+
   
   <!-- User getUserByPhoneNumberAndPassword(User user) -->
      <select id="getUserByPhoneNumberAndPassword"  resultType="com.qingzaoreading.pojo.po.User"  parameterType="com.qingzaoreading.pojo.po.User" >
@@ -130,7 +133,15 @@
     from user
    where  user_phone = #{user_phone} and user_password=#{user_password};
   </select>
-  
+
+
+  <!-- void setPassword(String user_phone,String password) -->
+  <update id="updatePassword" parameterType="com.qingzaoreading.pojo.po.User">
+    update user
+    set
+      user_password=#{user_password}
+      where user_phone=#{user_phone}
+  </update>
   
   
   

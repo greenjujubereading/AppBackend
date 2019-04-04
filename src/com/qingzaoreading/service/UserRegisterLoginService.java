@@ -20,4 +20,6 @@ public interface UserRegisterLoginService {
 	 VerifyCode getVerifyCodeByphone(String user_phone);
 	 
 	 void deleteVerifyCode(VerifyCode vc);
+
+	 void setPassword(User user);
 }

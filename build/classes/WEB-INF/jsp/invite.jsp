@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="js/jquery-easyui-1.5/jquery.min.js"></script>
-<script src="js/common.js"></script>
+<script src="js/common-idea.js"></script>
 <title>加入清早读书大家庭</title>
 </head>
 <body>

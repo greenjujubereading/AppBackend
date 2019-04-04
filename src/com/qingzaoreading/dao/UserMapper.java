@@ -52,4 +52,6 @@ public interface UserMapper {
 	int updateByPrimaryKeyWithBLOBs(User record);
 
 	int updateByPrimaryKey(User record);
+
+	void updatePassword(User user);
 }

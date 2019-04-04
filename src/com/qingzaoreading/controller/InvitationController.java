@@ -33,7 +33,17 @@ public class InvitationController {
 	 * @return  
 	 */
 	@RequestMapping("/invite")
-	public String invitation(HttpServletRequest request,  String id) {
+//	public String invitation(HttpServletRequest request,  String id) {
+//		System.out.println("id="+id);
+//		HttpSession session = request.getSession();
+//		JSONObject json = null;
+//		json = new JSONObject();
+//		json.put("user_id", id);
+//		request.getSession().setAttribute("user_id", json);
+//		return "invite";
+//	}
+
+	public String invitation(HttpServletRequest request, String id) {
 		System.out.println("id="+id);
 		HttpSession session = request.getSession();
 		JSONObject json = null;
@@ -46,6 +56,7 @@ public class InvitationController {
 	
 	//invitee
 	@RequestMapping("/invitee")
+	@ResponseBody
 	public Map<String,Object> invitee(HttpServletRequest request,  String user_phone) {
 		
 		JSONObject json = (JSONObject)request.getSession().getAttribute("user_id");
@@ -67,7 +78,11 @@ public class InvitationController {
 		user.setUser_type("0");
 		user.setUser_vip_expiration_time(null);
 		user.setUser_wechat_number(null);
-		userRegisterLoginService.addUser(user);
+
+		User u = userRegisterLoginService.getUserByPhoneNumber(user);
+		if(u==null){
+			userRegisterLoginService.addUser(user);
+		}
 		Map map=new HashMap<String,Object>();
 		map.put("result",true);
 		return map;
