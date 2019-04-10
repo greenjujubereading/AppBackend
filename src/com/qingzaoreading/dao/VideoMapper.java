@@ -51,4 +51,6 @@ public interface VideoMapper {
     List<BookList> getRecommendBooklist();
 
     List<BookList> getRecentBooklist();
+
+    List<BookList> getBookListByYear(String video_year);
 }

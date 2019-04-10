@@ -85,5 +85,12 @@
         <button type="button" class="sub-btn8">提交</button>
     </div>
 </div>
+
+<div class="comment">
+    <label for="comment">发表评论</label><input type="text" name="comment" class="comment-input" placeholder="请发表评论">
+    <button type="submit" class="btn-comment">提交</button>
+</div>
+
+
 </body>
 </html>

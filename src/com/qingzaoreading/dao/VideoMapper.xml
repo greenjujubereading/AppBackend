@@ -130,6 +130,14 @@
     where video_id=#{video_id} AND publish_time &lt; now();
   </select>
 
+    <!--List<BookList> getBookListByYear(String video_year);-->
+    <select id="getBookListByYear" resultType="com.qingzaoreading.pojo.vo.BookList" parameterType="java.lang.String">
+    select
+ 		video_id,video_cover_url,name,short_introduction,video_type,video_year,number_of_readers,time
+    from video
+    where video_year=#{video_year} AND publish_time &lt; now();
+  </select>
+
     <!-- List<BookList> search(String video_name) -->
     <select id="search" resultType="com.qingzaoreading.pojo.vo.BookList" parameterType="java.lang.String">
     select 

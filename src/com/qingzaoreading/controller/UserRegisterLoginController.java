@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -289,6 +290,33 @@ public class UserRegisterLoginController {
 		return map;
 	
 	 
+	}
+
+	@RequestMapping(value = {"/updateuserinfo"}, method={RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public Map<String,Object> updateUserInfo(
+			String user_id,
+			String name,
+			String gender,
+			String birthday,
+			String grade
+	){
+//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(birthday);
+		Long saveBirthdaySecond = Long.parseLong(birthday);
+		Date saveBirthday = new Date(saveBirthdaySecond);
+		Map map=new HashMap<String,Object>();
+		User user=userRegisterLoginService.getUserById(user_id);
+		user.setUser_name(name);
+		user.setUser_birthday(saveBirthday);
+		user.setUser_sex(gender);
+		user.setUser_grade(grade);
+		try{
+			userRegisterLoginService.updateUser(user);
+			map.put("result",true);
+		}catch (Exception e){
+			map.put("result",false);
+		}
+		return map;
 	}
 
 	

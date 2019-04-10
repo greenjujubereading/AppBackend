@@ -54,4 +54,8 @@ public interface UserMapper {
 	int updateByPrimaryKey(User record);
 
 	void updatePassword(User user);
+
+	User getUserById(String user_id);
+
+	void updateUser(User user);
 }

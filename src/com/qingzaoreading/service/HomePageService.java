@@ -1,5 +1,6 @@
 package com.qingzaoreading.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.qingzaoreading.pojo.po.Comment;
@@ -59,4 +60,10 @@ public interface HomePageService {
     List<BookList> getRecommendBooklist();
 
     List<BookList> getRecentBooklist();
+
+    void deleteCollect(UserCollection uc);
+
+    void addANewComment(CommentCustom comment);
+
+    List<BookList> getBookListByYear(String s);
 }

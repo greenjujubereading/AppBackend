@@ -1,112 +1,122 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qingzaoreading.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.qingzaoreading.pojo.po.User" >
-    <id column="user_id" property="userId" jdbcType="BIGINT" />
-    <result column="user_student_id" property="userStudentId" jdbcType="BIGINT" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="user_birthday" property="userBirthday" jdbcType="DATE" />
-    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
-    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
-    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
-    <result column="user_is_it_vip" property="userIsItVip" jdbcType="VARCHAR" />
-      <result column="user_grade" property="userGrade" jdbcType="VARCHAR" />
-    <result column="user_vip_expiration_time" property="userVipExpirationTime" jdbcType="TIMESTAMP" />
-    <result column="user_ invited_user_id" property="userInvitedUserId" jdbcType="BIGINT" />
-    <result column="user_ integral" property="userIntegral" jdbcType="DECIMAL" />
-    <result column="user_money" property="userMoney" jdbcType="DECIMAL" />
-    <result column="user_wechat_number" property="userWechatNumber" jdbcType="VARCHAR" />
-    <result column="user_type" property="userType" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.qingzaoreading.pojo.po.User" extends="BaseResultMap" >
-    <result column="user_ head_portrait_url" property="userHeadPortraitUrl" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.qingzaoreading.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.qingzaoreading.pojo.po.User">
+        <id column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="user_student_id" property="userStudentId" jdbcType="BIGINT"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_birthday" property="userBirthday" jdbcType="DATE"/>
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+        <result column="user_password" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="user_is_it_vip" property="userIsItVip" jdbcType="VARCHAR"/>
+        <result column="user_grade" property="userGrade" jdbcType="VARCHAR"/>
+        <result column="user_vip_expiration_time" property="userVipExpirationTime" jdbcType="TIMESTAMP"/>
+        <result column="user_ invited_user_id" property="userInvitedUserId" jdbcType="BIGINT"/>
+        <result column="user_ integral" property="userIntegral" jdbcType="DECIMAL"/>
+        <result column="user_money" property="userMoney" jdbcType="DECIMAL"/>
+        <result column="user_wechat_number" property="userWechatNumber" jdbcType="VARCHAR"/>
+        <result column="user_type" property="userType" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.qingzaoreading.pojo.po.User" extends="BaseResultMap">
+        <result column="user_ head_portrait_url" property="userHeadPortraitUrl" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     user_id, user_student_id, user_name, user_birthday, user_sex, user_phone, "user_ is_it_vip", 
     user_vip_expiration_time, "user_ invited_user_id", "user_ integral", user_money, 
     user_wechat_number, user_type
   </sql>
-  <sql id="Blob_Column_List" >
+    <sql id="Blob_Column_List">
     "user_ head_portrait_url"
   </sql>
-  
+
     <!-- User getUserByPhoneNumber(String user_phone) -->
-   <select id="getUserByPhoneNumber"  resultType="com.qingzaoreading.pojo.po.User"  parameterType="java.lang.String" >
+    <select id="getUserByPhoneNumber" resultType="com.qingzaoreading.pojo.po.User" parameterType="java.lang.String">
    select
    *
     from user
    where  user_phone = #{user_phone};
   </select>
-  
-  <!-- 	int getUserTotal(); -->
-     <select id="getUserTotal" resultType="_int"   >
+
+    <!-- User getUserById(String user_id) -->
+    <select id="getUserById" resultType="com.qingzaoreading.pojo.po.User" parameterType="java.lang.String">
+   select
+   *
+    from user
+   where  user_id = #{user_id};
+  </select>
+
+    <!-- 	int getUserTotal(); -->
+    <select id="getUserTotal" resultType="_int">
     select
    count(1)
     from user;
 --     where user.user_type="1";
   </select>
-  
-  
-<!--  void addUser(User newuser) -->
-   <insert id="addUser" parameterType="com.qingzaoreading.pojo.po.User" >
+
+
+    <!--  void addUser(User newuser) -->
+    <insert id="addUser" parameterType="com.qingzaoreading.pojo.po.User">
     insert into user (user_student_id, user_name, user_phone, user_password,
       user_is_it_vip,user_invited_user_id, user_integral, user_money, 
       user_wechat_number, user_type, user_head_portrait_url)
@@ -114,9 +124,9 @@
       #{user_invited_user_id}, #{user_integral}, #{user_money}, 
       #{user_wechat_number}, #{user_type}, #{user_head_portrait_url})
   </insert>
-  
-  <!-- void changeUserTypeToTrue(User user) -->
-   <update id="changeUserTypeToTrue" parameterType="com.qingzaoreading.pojo.po.User" >
+
+    <!-- void changeUserTypeToTrue(User user) -->
+    <update id="changeUserTypeToTrue" parameterType="com.qingzaoreading.pojo.po.User">
     update user
     set
       user_type = "1"
@@ -124,10 +134,9 @@
   </update>
 
 
-
-  
-  <!-- User getUserByPhoneNumberAndPassword(User user) -->
-     <select id="getUserByPhoneNumberAndPassword"  resultType="com.qingzaoreading.pojo.po.User"  parameterType="com.qingzaoreading.pojo.po.User" >
+    <!-- User getUserByPhoneNumberAndPassword(User user) -->
+    <select id="getUserByPhoneNumberAndPassword" resultType="com.qingzaoreading.pojo.po.User"
+            parameterType="com.qingzaoreading.pojo.po.User">
    select
    *
     from user
@@ -135,76 +144,76 @@
   </select>
 
 
-  <!-- void setPassword(String user_phone,String password) -->
-  <update id="updatePassword" parameterType="com.qingzaoreading.pojo.po.User">
+    <!-- void setPassword(String user_phone,String password) -->
+    <update id="updatePassword" parameterType="com.qingzaoreading.pojo.po.User">
     update user
     set
       user_password=#{user_password}
       where user_phone=#{user_phone}
   </update>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.qingzaoreading.pojo.po.UserExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qingzaoreading.pojo.po.UserExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from user
-    where user_id = #{userId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+
+    <!-- void updateUser(User user) -->
+    <update id="updateUser" parameterType="com.qingzaoreading.pojo.po.User">
+    update user
+    set
+      user_name=#{user_name},
+      user_sex=#{user_sex},
+      user_grade=#{user_grade},
+      user_birthday=#{user_birthday}
+      where user_id=#{user_id}
+  </update>
+
+
+    <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs"
+            parameterType="com.qingzaoreading.pojo.po.UserExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qingzaoreading.pojo.po.UserExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from user
+        where user_id = #{userId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from user
     where user_id = #{userId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.qingzaoreading.pojo.po.UserExample" >
-    delete from user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.qingzaoreading.pojo.po.User" >
+    <delete id="deleteByExample" parameterType="com.qingzaoreading.pojo.po.UserExample">
+        delete from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.qingzaoreading.pojo.po.User">
     insert into user (user_id, user_student_id, user_name, 
       user_birthday, user_sex, user_phone, 
       "user_ is_it_vip", user_vip_expiration_time, "user_ invited_user_id", 
@@ -216,238 +225,238 @@
       #{userIntegral,jdbcType=DECIMAL}, #{userMoney,jdbcType=DECIMAL}, #{userWechatNumber,jdbcType=VARCHAR}, 
       #{userType,jdbcType=VARCHAR}, #{userHeadPortraitUrl,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.qingzaoreading.pojo.po.User" >
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="userStudentId != null" >
-        user_student_id,
-      </if>
-      <if test="userName != null" >
-        user_name,
-      </if>
-      <if test="userBirthday != null" >
-        user_birthday,
-      </if>
-      <if test="userSex != null" >
-        user_sex,
-      </if>
-      <if test="userPhone != null" >
-        user_phone,
-      </if>
-      <if test="userIsItVip != null" >
-        "user_ is_it_vip",
-      </if>
-      <if test="userVipExpirationTime != null" >
-        user_vip_expiration_time,
-      </if>
-      <if test="userInvitedUserId != null" >
-        "user_ invited_user_id",
-      </if>
-      <if test="userIntegral != null" >
-        "user_ integral",
-      </if>
-      <if test="userMoney != null" >
-        user_money,
-      </if>
-      <if test="userWechatNumber != null" >
-        user_wechat_number,
-      </if>
-      <if test="userType != null" >
-        user_type,
-      </if>
-      <if test="userHeadPortraitUrl != null" >
-        "user_ head_portrait_url",
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="userStudentId != null" >
-        #{userStudentId,jdbcType=BIGINT},
-      </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="userBirthday != null" >
-        #{userBirthday,jdbcType=DATE},
-      </if>
-      <if test="userSex != null" >
-        #{userSex,jdbcType=VARCHAR},
-      </if>
-      <if test="userPhone != null" >
-        #{userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="userIsItVip != null" >
-        #{userIsItVip,jdbcType=VARCHAR},
-      </if>
-      <if test="userVipExpirationTime != null" >
-        #{userVipExpirationTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="userInvitedUserId != null" >
-        #{userInvitedUserId,jdbcType=BIGINT},
-      </if>
-      <if test="userIntegral != null" >
-        #{userIntegral,jdbcType=DECIMAL},
-      </if>
-      <if test="userMoney != null" >
-        #{userMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="userWechatNumber != null" >
-        #{userWechatNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null" >
-        #{userType,jdbcType=VARCHAR},
-      </if>
-      <if test="userHeadPortraitUrl != null" >
-        #{userHeadPortraitUrl,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.qingzaoreading.pojo.po.UserExample" resultType="java.lang.Integer" >
-    select count(*) from user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update user
-    <set >
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=BIGINT},
-      </if>
-      <if test="record.userStudentId != null" >
+    <insert id="insertSelective" parameterType="com.qingzaoreading.pojo.po.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userStudentId != null">
+                user_student_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="userBirthday != null">
+                user_birthday,
+            </if>
+            <if test="userSex != null">
+                user_sex,
+            </if>
+            <if test="userPhone != null">
+                user_phone,
+            </if>
+            <if test="userIsItVip != null">
+                "user_ is_it_vip",
+            </if>
+            <if test="userVipExpirationTime != null">
+                user_vip_expiration_time,
+            </if>
+            <if test="userInvitedUserId != null">
+                "user_ invited_user_id",
+            </if>
+            <if test="userIntegral != null">
+                "user_ integral",
+            </if>
+            <if test="userMoney != null">
+                user_money,
+            </if>
+            <if test="userWechatNumber != null">
+                user_wechat_number,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="userHeadPortraitUrl != null">
+                "user_ head_portrait_url",
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="userStudentId != null">
+                #{userStudentId,jdbcType=BIGINT},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userBirthday != null">
+                #{userBirthday,jdbcType=DATE},
+            </if>
+            <if test="userSex != null">
+                #{userSex,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userIsItVip != null">
+                #{userIsItVip,jdbcType=VARCHAR},
+            </if>
+            <if test="userVipExpirationTime != null">
+                #{userVipExpirationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userInvitedUserId != null">
+                #{userInvitedUserId,jdbcType=BIGINT},
+            </if>
+            <if test="userIntegral != null">
+                #{userIntegral,jdbcType=DECIMAL},
+            </if>
+            <if test="userMoney != null">
+                #{userMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="userWechatNumber != null">
+                #{userWechatNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="userHeadPortraitUrl != null">
+                #{userHeadPortraitUrl,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.qingzaoreading.pojo.po.UserExample" resultType="java.lang.Integer">
+        select count(*) from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update user
+        <set>
+            <if test="record.userId != null">
+                user_id = #{record.userId,jdbcType=BIGINT},
+            </if>
+            <if test="record.userStudentId != null">
+                user_student_id = #{record.userStudentId,jdbcType=BIGINT},
+            </if>
+            <if test="record.userName != null">
+                user_name = #{record.userName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userBirthday != null">
+                user_birthday = #{record.userBirthday,jdbcType=DATE},
+            </if>
+            <if test="record.userSex != null">
+                user_sex = #{record.userSex,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userPhone != null">
+                user_phone = #{record.userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userIsItVip != null">
+                "user_ is_it_vip" = #{record.userIsItVip,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userVipExpirationTime != null">
+                user_vip_expiration_time = #{record.userVipExpirationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.userInvitedUserId != null">
+                "user_ invited_user_id" = #{record.userInvitedUserId,jdbcType=BIGINT},
+            </if>
+            <if test="record.userIntegral != null">
+                "user_ integral" = #{record.userIntegral,jdbcType=DECIMAL},
+            </if>
+            <if test="record.userMoney != null">
+                user_money = #{record.userMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="record.userWechatNumber != null">
+                user_wechat_number = #{record.userWechatNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userType != null">
+                user_type = #{record.userType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userHeadPortraitUrl != null">
+                "user_ head_portrait_url" = #{record.userHeadPortraitUrl,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExampleWithBLOBs" parameterType="map">
+        update user
+        set user_id = #{record.userId,jdbcType=BIGINT},
         user_student_id = #{record.userStudentId,jdbcType=BIGINT},
-      </if>
-      <if test="record.userName != null" >
         user_name = #{record.userName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userBirthday != null" >
         user_birthday = #{record.userBirthday,jdbcType=DATE},
-      </if>
-      <if test="record.userSex != null" >
         user_sex = #{record.userSex,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userPhone != null" >
         user_phone = #{record.userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userIsItVip != null" >
         "user_ is_it_vip" = #{record.userIsItVip,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userVipExpirationTime != null" >
         user_vip_expiration_time = #{record.userVipExpirationTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.userInvitedUserId != null" >
         "user_ invited_user_id" = #{record.userInvitedUserId,jdbcType=BIGINT},
-      </if>
-      <if test="record.userIntegral != null" >
         "user_ integral" = #{record.userIntegral,jdbcType=DECIMAL},
-      </if>
-      <if test="record.userMoney != null" >
         user_money = #{record.userMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="record.userWechatNumber != null" >
         user_wechat_number = #{record.userWechatNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userType != null" >
         user_type = #{record.userType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userHeadPortraitUrl != null" >
-        "user_ head_portrait_url" = #{record.userHeadPortraitUrl,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update user
-    set user_id = #{record.userId,jdbcType=BIGINT},
-      user_student_id = #{record.userStudentId,jdbcType=BIGINT},
-      user_name = #{record.userName,jdbcType=VARCHAR},
-      user_birthday = #{record.userBirthday,jdbcType=DATE},
-      user_sex = #{record.userSex,jdbcType=VARCHAR},
-      user_phone = #{record.userPhone,jdbcType=VARCHAR},
-      "user_ is_it_vip" = #{record.userIsItVip,jdbcType=VARCHAR},
-      user_vip_expiration_time = #{record.userVipExpirationTime,jdbcType=TIMESTAMP},
-      "user_ invited_user_id" = #{record.userInvitedUserId,jdbcType=BIGINT},
-      "user_ integral" = #{record.userIntegral,jdbcType=DECIMAL},
-      user_money = #{record.userMoney,jdbcType=DECIMAL},
-      user_wechat_number = #{record.userWechatNumber,jdbcType=VARCHAR},
-      user_type = #{record.userType,jdbcType=VARCHAR},
-      "user_ head_portrait_url" = #{record.userHeadPortraitUrl,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update user
-    set user_id = #{record.userId,jdbcType=BIGINT},
-      user_student_id = #{record.userStudentId,jdbcType=BIGINT},
-      user_name = #{record.userName,jdbcType=VARCHAR},
-      user_birthday = #{record.userBirthday,jdbcType=DATE},
-      user_sex = #{record.userSex,jdbcType=VARCHAR},
-      user_phone = #{record.userPhone,jdbcType=VARCHAR},
-      "user_ is_it_vip" = #{record.userIsItVip,jdbcType=VARCHAR},
-      user_vip_expiration_time = #{record.userVipExpirationTime,jdbcType=TIMESTAMP},
-      "user_ invited_user_id" = #{record.userInvitedUserId,jdbcType=BIGINT},
-      "user_ integral" = #{record.userIntegral,jdbcType=DECIMAL},
-      user_money = #{record.userMoney,jdbcType=DECIMAL},
-      user_wechat_number = #{record.userWechatNumber,jdbcType=VARCHAR},
-      user_type = #{record.userType,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qingzaoreading.pojo.po.User" >
-    update user
-    <set >
-      <if test="userStudentId != null" >
-        user_student_id = #{userStudentId,jdbcType=BIGINT},
-      </if>
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="userBirthday != null" >
-        user_birthday = #{userBirthday,jdbcType=DATE},
-      </if>
-      <if test="userSex != null" >
-        user_sex = #{userSex,jdbcType=VARCHAR},
-      </if>
-      <if test="userPhone != null" >
-        user_phone = #{userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="userIsItVip != null" >
-        "user_ is_it_vip" = #{userIsItVip,jdbcType=VARCHAR},
-      </if>
-      <if test="userVipExpirationTime != null" >
-        user_vip_expiration_time = #{userVipExpirationTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="userInvitedUserId != null" >
-        "user_ invited_user_id" = #{userInvitedUserId,jdbcType=BIGINT},
-      </if>
-      <if test="userIntegral != null" >
-        "user_ integral" = #{userIntegral,jdbcType=DECIMAL},
-      </if>
-      <if test="userMoney != null" >
-        user_money = #{userMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="userWechatNumber != null" >
-        user_wechat_number = #{userWechatNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null" >
-        user_type = #{userType,jdbcType=VARCHAR},
-      </if>
-      <if test="userHeadPortraitUrl != null" >
-        "user_ head_portrait_url" = #{userHeadPortraitUrl,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where user_id = #{userId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qingzaoreading.pojo.po.User" >
+        "user_ head_portrait_url" = #{record.userHeadPortraitUrl,jdbcType=LONGVARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update user
+        set user_id = #{record.userId,jdbcType=BIGINT},
+        user_student_id = #{record.userStudentId,jdbcType=BIGINT},
+        user_name = #{record.userName,jdbcType=VARCHAR},
+        user_birthday = #{record.userBirthday,jdbcType=DATE},
+        user_sex = #{record.userSex,jdbcType=VARCHAR},
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+        "user_ is_it_vip" = #{record.userIsItVip,jdbcType=VARCHAR},
+        user_vip_expiration_time = #{record.userVipExpirationTime,jdbcType=TIMESTAMP},
+        "user_ invited_user_id" = #{record.userInvitedUserId,jdbcType=BIGINT},
+        "user_ integral" = #{record.userIntegral,jdbcType=DECIMAL},
+        user_money = #{record.userMoney,jdbcType=DECIMAL},
+        user_wechat_number = #{record.userWechatNumber,jdbcType=VARCHAR},
+        user_type = #{record.userType,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.qingzaoreading.pojo.po.User">
+        update user
+        <set>
+            <if test="userStudentId != null">
+                user_student_id = #{userStudentId,jdbcType=BIGINT},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userBirthday != null">
+                user_birthday = #{userBirthday,jdbcType=DATE},
+            </if>
+            <if test="userSex != null">
+                user_sex = #{userSex,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                user_phone = #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userIsItVip != null">
+                "user_ is_it_vip" = #{userIsItVip,jdbcType=VARCHAR},
+            </if>
+            <if test="userVipExpirationTime != null">
+                user_vip_expiration_time = #{userVipExpirationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userInvitedUserId != null">
+                "user_ invited_user_id" = #{userInvitedUserId,jdbcType=BIGINT},
+            </if>
+            <if test="userIntegral != null">
+                "user_ integral" = #{userIntegral,jdbcType=DECIMAL},
+            </if>
+            <if test="userMoney != null">
+                user_money = #{userMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="userWechatNumber != null">
+                user_wechat_number = #{userWechatNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="userHeadPortraitUrl != null">
+                "user_ head_portrait_url" = #{userHeadPortraitUrl,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qingzaoreading.pojo.po.User">
     update user
     set user_student_id = #{userStudentId,jdbcType=BIGINT},
       user_name = #{userName,jdbcType=VARCHAR},
@@ -464,7 +473,7 @@
       "user_ head_portrait_url" = #{userHeadPortraitUrl,jdbcType=LONGVARCHAR}
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.qingzaoreading.pojo.po.User" >
+    <update id="updateByPrimaryKey" parameterType="com.qingzaoreading.pojo.po.User">
     update user
     set user_student_id = #{userStudentId,jdbcType=BIGINT},
       user_name = #{userName,jdbcType=VARCHAR},

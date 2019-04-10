@@ -359,4 +359,23 @@ $(function () {
         });
     })
 
+
+    $(".btn-comment").on('click', function () {
+        var data = {}
+        data.video_id = 1;
+        data.from_user_id = 1;
+        data.cotent = $(".comment-input").val()
+        $.ajax({
+            url: "http://localhost:8080/commenttovideo",
+            async: true,
+            type: "post",
+            dataType: "json",
+            data: data,
+            success: function (data) {
+                console.log(data);
+
+            }
+        });
+    })
+
 });

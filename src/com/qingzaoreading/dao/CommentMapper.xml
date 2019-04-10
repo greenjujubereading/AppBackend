@@ -82,7 +82,16 @@
     from comment,user
     where user_id=from_user_id and video_id=#{video_id};
   </select>
-  
+
+  <!--void addANewVideoComment (CommnetCustom comment)-->
+  <insert id="addANewVideoComment" parameterType="com.qingzaoreading.pojo.po.Comment" useGeneratedKeys="true" keyProperty="comment_id">
+    insert into comment (comment_id, video_id, from_user_id,
+      to_user_id, topic_type, cotent,
+      comment_date)
+    values (#{comment_id}, #{video_id}, #{from_user_id},
+      #{to_user_id}, #{topic_type}, #{cotent},
+      #{comment_date})
+  </insert>
   
   
   
