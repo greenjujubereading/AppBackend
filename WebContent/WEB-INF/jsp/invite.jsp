@@ -2,20 +2,85 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<c:url var="base" value="/"></c:url>--%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="js/jquery-easyui-1.5/jquery.min.js"></script>
-<script src="js/common-idea.js"></script>
-<title>加入清早读书大家庭</title>
-</head>
-<body>
-        <div>
-           手机号: <input name="user_phone_invite"  >
-       </div>
-        <div>用户名为：${user_name}的用户你好</div>
+<!DOCTYPE html>
+<html lang="en">
 
-        <button type="button" class="sub-btn_invite">确定</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery-easyui-1.5/jquery.min.js"></script>
+    <link rel="stylesheet" href="src/css/app_recommendation_login.css">
+</head>
+
+<body>
+    <div class="head">
+        <div class="title">
+            <strong class="text_title">免费VIP领取中</strong>
+        </div>
+        <div class='content' id="content_part1">
+            <div class="img_sad_style">
+                <img class="img_style" src="src/img/1.png">
+            </div>
+            <div class="img_sad_style">
+                <img class="img_style" src="src/img/2.png">
+            </div>
+            <div class="img_sad_style">
+                <img class="img_style" src="src/img/3.png">
+            </div>
+            <!-- <div class="split_line"></div> -->
+    
+            <div class="img_sad_style">
+                <img class="img_style" src="src/img/4.png">
+            </div>
+            <div class="img_sad_style">
+                <img class="img_style" src="src/img/5.png">
+            </div>
+            <div class="img_sad_style">
+                <img class="img_style" src="src/img/6.png">
+            </div>
+            <!-- <div class="split_line"></div> -->
+        </div>
+    </div>
+    <div class="recommendation_content">
+            
+            <strong class="recommendation_title">青枣读书</strong>
+            
+            <div class="strong_text">
+                <strong class="recommendation_text">1、1~6年级必读书籍讲析引读；</strong>
+                <strong class="recommendation_text">2、特级教师团队倾心打造；</strong>
+                <strong class="recommendation_text">3、有趣有料，让孩子爱上读书。</strong>
+            </div>
+    </div>
+    <div class="footer">
+        <div class="foot1">
+            <img src="src/img/my_photo.png" class="my_photo">
+            <label class="app_content">来自&nbsp;${user_name}&nbsp;的学习邀请</label>
+        </div>
+        <input placeholder="手机号码" class="phone">
+        <hr>
+        <button type="submit" id="sub-btn_invite" class="submit_type"><label class="submit_text">领取7天VIP，免费观看讲书视频</label></button>
+    </div>
+
+    <script>
+        $("#sub-btn_invite").on("click", function () {
+            var data = {};
+            data.user_phone = $.trim($(".phone").val());
+
+            $.ajax({
+                url: "http://localhost:8080/invitee",
+                async: true,
+                type: "post",
+                dataType: "json",
+                data: data,
+                success: function (data) {
+                    console.log(data);
+
+                }
+            });
+        })
+    </script>
 </body>
+
 </html>
