@@ -221,6 +221,7 @@ public class UserRegisterLoginController {
 		else
 		{
 			map.put("result", true);
+			map.put("user_id", user.getUser_id());
 			map.put("user_name", user.getUser_name());
 			map.put("user_student_id", user.getUser_student_id());
 			String url=FilePath.getUrl(user.getUser_head_portrait_url());
@@ -277,6 +278,7 @@ public class UserRegisterLoginController {
 		}
 		else {
 			map.put("result", true);
+			map.put("user_id", user.getUser_id());
 			map.put("user_name", user.getUser_name());
 			map.put("user_student_id", user.getUser_student_id());
 			map.put("user_head_portrait_url", user.getUser_head_portrait_url());

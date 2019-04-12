@@ -8,8 +8,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.qingzaoreading.service.HomePageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,7 +26,6 @@ public class InvitationController {
 
 	@Autowired
 	private InvitationService invitationPageService;
-	
 	
 	@Autowired
 	private UserRegisterLoginService  userRegisterLoginService;
@@ -43,13 +44,15 @@ public class InvitationController {
 //		return "invite";
 //	}
 
-	public String invitation(HttpServletRequest request, String id) {
+	public String invitation(HttpServletRequest request, String id, ModelMap model) {
 		System.out.println("id="+id);
+		String user_name = userRegisterLoginService.getUserById(id).getUser_name();
 		HttpSession session = request.getSession();
 		JSONObject json = null;
 		json = new JSONObject();
 		json.put("user_id", id);
 		request.getSession().setAttribute("user_id", json);
+		model.addAttribute("user_name", user_name);
 		return "invite";
 	}
 	
