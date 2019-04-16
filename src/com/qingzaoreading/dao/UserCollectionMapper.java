@@ -2,21 +2,26 @@ package com.qingzaoreading.dao;
 
 import com.qingzaoreading.pojo.po.UserCollection;
 import com.qingzaoreading.pojo.po.UserCollectionExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserCollectionMapper {
-	
-		void addCollection(UserCollection uc);
-	
-		UserCollection getUserCollectionByid(UserCollection uc);
-		List<UserCollection> getcollection(String user_id);
-	
-		UserCollection getUserCollectionByvideoiduserid(UserCollection usercollection);
-		 
-		 void updataUserCollection(UserCollection usercollection);
-	
-	
+
+    void deleteByUserAndVideo(UserCollection uc);
+
+    void addCollection(UserCollection uc);
+
+    UserCollection getUserCollectionByid(UserCollection uc);
+
+    List<UserCollection> getcollection(String user_id);
+
+    UserCollection getUserCollectionByvideoiduserid(UserCollection usercollection);
+
+    void updataUserCollection(UserCollection usercollection);
+
+
     int countByExample(UserCollectionExample example);
 
     int deleteByExample(UserCollectionExample example);

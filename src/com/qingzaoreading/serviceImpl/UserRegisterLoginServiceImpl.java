@@ -71,4 +71,21 @@ public class UserRegisterLoginServiceImpl implements UserRegisterLoginService {
 		verifyCodeMapper.deleteVerifyCode(vc);
 	}
 
+	@Override
+	public void setPassword(User user) {
+		// TODO Auto-generated method stub
+		userMapper.updatePassword(user);
+	}
+
+	@Override
+	public User getUserById(String user_id) {
+		// TODO Auto-generated method stub
+		return userMapper.getUserById(user_id);
+	}
+
+	@Override
+	public void updateUser(User user) {
+		// TODO Auto-generated method stub
+		userMapper.updateUser(user);
+	}
 }

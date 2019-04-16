@@ -28,6 +28,7 @@
 		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
 		
     <!-- 静态资源 解析 -->
+	<mvc:resources location="/src/" mapping="/src/**" />
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/css/" mapping="/css/**" />	
 	<mvc:resources location="/module/" mapping="/module/**" />

@@ -213,5 +213,36 @@ public class HomePageServiceImpl implements HomePageService {
 		return videoMapper.likebooklist(video_id);
 	}
 
-	
+
+
+	@Override
+	public List<BookList> getRecommendBooklist() {
+		// TODO Auto-generated method stub
+		return videoMapper.getRecommendBooklist();
+	}
+
+
+	@Override
+	public List<BookList> getRecentBooklist() {
+		// TODO Auto-generated method stub
+		return videoMapper.getRecentBooklist();
+	}
+
+
+	@Override
+	public void deleteCollect(UserCollection uc) {
+		// TODO Auto-generated method stub
+		userCollectionMapper.deleteByUserAndVideo(uc);
+	}
+
+	@Override
+	public void addANewComment(CommentCustom comment) {
+		// TODO Auto-generated method stub
+		commentMapper.addANewVideoComment(comment);
+	}
+
+	@Override
+	public List<BookList> getBookListByYear(String s) {
+		return videoMapper.getBookListByYear(s);
+	}
 }
